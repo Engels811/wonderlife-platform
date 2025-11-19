@@ -1,127 +1,65 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { 
-  Home, 
-  Ticket, 
-  Users, 
-  Settings, 
+import {
+  Home,
+  Ticket,
+  Users,
   Shield,
+  Settings,
   LogOut,
-  Menu,
-  X
-} from 'lucide-react';
-import { useState } from 'react';
-
-interface NavItem {
-  name: string;
-  href: string;
-  icon: any;
-  adminOnly?: boolean;
-}
-
-const navItems: NavItem[] = [
-  { name: 'Dashboard', href: '/dashboard', icon: Home },
-  { name: 'Tickets', href: '/tickets', icon: Ticket },
-  { name: 'Users', href: '/users', icon: Users, adminOnly: true },
-  { name: 'Owner Panel', href: '/owner', icon: Shield, adminOnly: true },
-  { name: 'Settings', href: '/settings', icon: Settings },
-];
+} from "lucide-react";
 
 export default function Sidebar() {
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-
-  // TODO: Get user role from auth context
-  const userRole = 'OWNER'; // Placeholder
-
-  const filteredNavItems = navItems.filter(item => 
-    !item.adminOnly || ['ADMIN', 'OWNER'].includes(userRole)
-  );
-
   return (
-    <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-purple-600/20 border border-purple-500/30 neon-shadow"
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      {/* Sidebar */}
-      <aside
-        className={`
-          fixed top-0 left-0 h-screen w-64 bg-black/40 backdrop-blur-xl
-          border-r border-purple-500/30 p-6 flex flex-col
-          transition-transform duration-300 z-40
-          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-        `}
-      >
-        {/* Logo */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold neon-text">WonderLife</h1>
-          <p className="text-sm text-gray-400">Platform Dashboard</p>
-        </div>
+    <aside className="w-64 bg-[#0d031a] border-r border-purple-900/40 text-white flex flex-col justify-between p-6">
+      {/* Logo */}
+      <div>
+        <h1 className="text-2xl font-bold text-purple-400">WonderLife</h1>
+        <p className="text-xs opacity-60">Platform Dashboard</p>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-2">
-          {filteredNavItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
+        <nav className="mt-10 space-y-3">
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`
-                  flex items-center gap-3 px-4 py-3 rounded-lg
-                  transition-all duration-200
-                  ${isActive 
-                    ? 'bg-purple-600/20 border border-purple-500/50 neon-shadow' 
-                    : 'hover:bg-purple-600/10 border border-transparent'
-                  }
-                `}
-              >
-                <Icon size={20} />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
+          <NavItem icon={<Home size={18} />} text="Dashboard" href="/" />
+          <NavItem icon={<Ticket size={18} />} text="Tickets" href="/tickets" />
+          <NavItem icon={<Users size={18} />} text="Users" href="/users" />
+          <NavItem icon={<Shield size={18} />} text="Owner Panel" href="/owner" />
+          <NavItem icon={<Settings size={18} />} text="Settings" href="/settings" />
+
         </nav>
+      </div>
 
-        {/* User Info & Logout */}
-        <div className="pt-4 border-t border-purple-500/30">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center">
-              <span className="text-sm font-bold">E</span>
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium">Engels811</p>
-              <p className="text-xs text-gray-400">{userRole}</p>
-            </div>
+      {/* Profil/Logout */}
+      <div className="space-y-4">
+        {/* User badge */}
+        <div className="flex items-center gap-3 p-3 rounded-xl bg-purple-800/10 border border-purple-800/20">
+          <div className="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">
+            E
           </div>
-
-          <button
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg
-              hover:bg-red-600/10 border border-transparent
-              hover:border-red-500/50 transition-all duration-200"
-          >
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
+          <div>
+            <p className="text-sm font-semibold">Engels811</p>
+            <p className="text-xs opacity-60">OWNER</p>
+          </div>
         </div>
-      </aside>
 
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          onClick={() => setIsOpen(false)}
-          className="lg:hidden fixed inset-0 bg-black/50 z-30"
-        />
-      )}
-    </>
+        {/* Logout */}
+        <button className="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-purple-900/20 hover:bg-purple-900/30 transition border border-purple-900/30">
+          <LogOut size={16} />
+          Logout
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+function NavItem({ icon, text, href }: any) {
+  return (
+    <a
+      href={href}
+      className="flex items-center gap-3 text-sm font-medium px-3 py-2 rounded-lg hover:bg-purple-900/20 transition"
+    >
+      {icon}
+      {text}
+    </a>
   );
 }
