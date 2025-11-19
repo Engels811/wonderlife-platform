@@ -20,7 +20,7 @@ export default function CreatorPage() {
 }
 
 // ----------------------------------------
-// Creator Studio Seite (FEHLERFREI)
+// Creator Studio Seite (KORREKT & FEHLERFREI)
 // ----------------------------------------
 
 type CreatorCardProps = {
