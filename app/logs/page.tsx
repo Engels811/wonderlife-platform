@@ -1,7 +1,8 @@
-export default function Logs() {
+export default function LogsPage() {
   return (
-    <div className='p-10 text-white'>
-      <h1 className='text-3xl font-bold'>Logs Bereich</h1>
+    <div>
+      <h1 className="text-3xl font-bold text-purple-400">Logs</h1>
+      <p className="opacity-70 mt-2">Event logs and system monitoring.</p>
     </div>
   );
 }
