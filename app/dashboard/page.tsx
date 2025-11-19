@@ -124,14 +124,12 @@ function cpuColor(v) {
   return "text-red-500";
 }
 
-// RAM Color
 function ramColor(v) {
   if (v < 60) return "text-green-400";
   if (v < 90) return "text-yellow-400";
   return "text-red-500";
 }
 
-// Format uptime
 function formatUptime(sec) {
   const h = Math.floor(sec / 3600);
   const m = Math.floor((sec % 3600) / 60);
