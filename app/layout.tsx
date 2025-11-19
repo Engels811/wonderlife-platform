@@ -6,7 +6,11 @@ export const metadata = {
   description: "WonderLife Network – Neon Dashboard",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="de">
       <body className="bg-[#0b0313] text-white">
