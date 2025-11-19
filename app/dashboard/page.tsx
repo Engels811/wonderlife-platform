@@ -1,6 +1,15 @@
 // @ts-nocheck
 
-export default function DashboardPage() {
+async function getFiveM() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/fivem`, {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export default async function DashboardPage() {
+  const fivem = await getFiveM();
+
   return (
     <div className="p-8">
 
@@ -14,7 +23,10 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
         <StatCard title="Discord Server" value="8" />
-        <StatCard title="FiveM Server" value="City RP (LIVE)" />
+        <StatCard
+          title="FiveM Server"
+          value={fivem.status === "online" ? "City RP (LIVE)" : "Offline"}
+        />
         <StatCard title="Team-Mitglieder" value="42" />
         <StatCard title="Offene Tickets" value="3" />
 
@@ -23,22 +35,29 @@ export default function DashboardPage() {
       {/* MID GRID – SERVER + DISCORD */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
 
-        <FiveMStatus />
+        <FiveMStatus
+          online={fivem.online}
+          max={fivem.max}
+          resources={fivem.resources}
+          hostname={fivem.hostname}
+          status={fivem.status}
+        />
+
         <DiscordPanel />
 
       </div>
 
       {/* BOTTOM GRID – ROLES + LOGS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-
         <RolePanel />
         <LogsPanel />
-
       </div>
 
     </div>
   );
 }
+
+
 
 /* =======================================================================
    COMPONENTS
@@ -56,7 +75,8 @@ function StatCard({ title, value }) {
   );
 }
 
-function FiveMStatus({ online = 0, max = 260, cpu = 0, ram = 0, resources = 0 }) {
+
+function FiveMStatus({ online, max, resources, hostname, status }) {
   return (
     <div className="bg-[#11071c] border border-purple-900/30 rounded-xl p-6 
                     shadow-lg shadow-purple-900/20">
@@ -66,32 +86,37 @@ function FiveMStatus({ online = 0, max = 260, cpu = 0, ram = 0, resources = 0 })
       </h2>
 
       <p className="opacity-70">
-        WonderLife City RP —{" "}
-        <span className={online > 0 ? "text-green-400" : "text-red-400"}>
-          {online > 0 ? "ONLINE" : "OFFLINE"}
+        {hostname} —{" "}
+        <span className={status === "online" ? "text-green-400" : "text-red-400"}>
+          {status === "online" ? "ONLINE" : "OFFLINE"}
         </span>
       </p>
 
-      {/* Progress Bar */}
+      {/* PROGRESS BAR */}
       <div className="w-full bg-purple-900/30 h-3 rounded-full mt-4 overflow-hidden">
         <div
           className="bg-purple-500 h-3 rounded-full"
-          style={{ width: `${(online / max) * 100}%` }}
+          style={{
+            width:
+              max > 0
+                ? `${Math.min((online / max) * 100, 100)}%`
+                : "0%"
+          }}
         />
       </div>
 
-      {/* DYNAMISCH */}
       <p className="text-sm opacity-70 mt-2">
         🔹 {online} / {max} Spieler online
       </p>
 
       <p className="text-sm opacity-50">
-        🔸 CPU: {cpu}% — RAM: {ram}% — Ressourcen: {resources}
+        🔸 Ressourcen geladen: {resources}
       </p>
 
     </div>
   );
 }
+
 
 function DiscordPanel() {
   return (
@@ -116,6 +141,7 @@ function DiscordPanel() {
   );
 }
 
+
 function RolePanel() {
   return (
     <div className="bg-[#11071c] border border-purple-900/30 rounded-xl p-6 
@@ -132,6 +158,7 @@ function RolePanel() {
     </div>
   );
 }
+
 
 function LogsPanel() {
   return (
