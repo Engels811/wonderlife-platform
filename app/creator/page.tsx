@@ -1,12 +1,14 @@
-// @ts-nocheck
+'use client';
+
+import React from 'react';
 
 // ------------------------------------------------------
 // Types
 // ------------------------------------------------------
-type CreatorCardProps = {
+interface CreatorCardProps {
   title: string;
   desc: string;
-};
+}
 
 // ------------------------------------------------------
 // Einzelne Creator-Funktion als Card
