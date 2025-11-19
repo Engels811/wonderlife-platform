@@ -19,9 +19,9 @@ export default function CreatorPage() {
   );
 }
 
-/* ------------------ */
-/* FIXED COMPONENT    */
-/* ------------------ */
+/* ---------------------- */
+/*   FIXED COMPONENT      */
+/* ---------------------- */
 
 type CreatorCardProps = {
   title: string;
