@@ -1,7 +1,8 @@
-export default function Creator() {
+export default function CreatorPage() {
   return (
-    <div className='p-10 text-white'>
-      <h1 className='text-3xl font-bold'>Creator Bereich</h1>
+    <div>
+      <h1 className="text-3xl font-bold text-purple-400">Creator Studio</h1>
+      <p className="opacity-70 mt-2">Manage content, uploads & streams.</p>
     </div>
   );
 }
