@@ -18,7 +18,13 @@ export default function CreatorPage() {
   );
 }
 
-function CreatorCard({ title, desc }) {
+function CreatorCard({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
   return (
     <div className="bg-[#13081f] border border-purple-900/30 rounded-xl p-6 shadow-lg shadow-purple-900/20 hover:scale-[1.03] transition">
       <h2 className="text-xl font-semibold text-purple-300">{title}</h2>
@@ -26,3 +32,4 @@ function CreatorCard({ title, desc }) {
     </div>
   );
 }
+
