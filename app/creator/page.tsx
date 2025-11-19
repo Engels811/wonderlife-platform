@@ -45,35 +45,12 @@ export default function CreatorPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <CreatorCard
-          title="Upload Manager"
-          desc="Upload Videos, Thumbnails, Images"
-        />
-
-        <CreatorCard
-          title="Stream Sync"
-          desc="Sync Twitch/YT Live Data"
-        />
-
-        <CreatorCard
-          title="Shorts / Clips"
-          desc="Auto-generate short clips"
-        />
-
-        <CreatorCard
-          title="Analytics"
-          desc="Track views, stats & engagement"
-        />
-
-        <CreatorCard
-          title="Tasks"
-          desc="Manage your workflow"
-        />
-
-        <CreatorCard
-          title="Brand Tools"
-          desc="Logos, overlays, templates"
-        />
+        <CreatorCard title="Upload Manager" desc="Upload Videos, Thumbnails, Images" />
+        <CreatorCard title="Stream Sync" desc="Sync Twitch/YT Live Data" />
+        <CreatorCard title="Shorts / Clips" desc="Auto-generate short clips" />
+        <CreatorCard title="Analytics" desc="Track views, stats & engagement" />
+        <CreatorCard title="Tasks" desc="Manage your workflow" />
+        <CreatorCard title="Brand Tools" desc="Logos, overlays, templates" />
 
       </div>
     </div>
