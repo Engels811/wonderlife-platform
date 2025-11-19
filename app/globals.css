@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neon Text */
+.neon-text {
+  text-shadow: 0 0 5px #ff00d4, 0 0 15px #7a00ff;
+}
+
+/* Neon Shadow */
+.neon-shadow {
+  box-shadow: 0 0 10px #ff00d4, 0 0 20px #7a00ff;
+}
+
+/* Neon Panel */
+.neon-panel {
+  background: rgba(20, 0, 30, 0.45);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 0, 212, 0.35);
+  border-radius: 14px;
+  padding: 24px;
+}
