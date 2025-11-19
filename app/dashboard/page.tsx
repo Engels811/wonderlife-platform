@@ -1,31 +1,65 @@
 export default function DashboardPage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-purple-400">Dashboard</h1>
-      <p className="opacity-70 mt-2 mb-10">WonderLife Platform Overview</p>
+    <div className="space-y-10">
 
-      {/* GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Title */}
+      <h1 className="text-3xl neon-blue font-bold">
+        DASHBOARD – WONDERLIFE NETWORK
+      </h1>
 
-        <Widget title="Active Users" value="128" />
-        <Widget title="Tickets Today" value="34" />
-        <Widget title="Server Health" value="100%" />
-        
-        <Widget title="Uploads" value="542" />
-        <Widget title="Creator Studio Tasks" value="17" />
-        <Widget title="Pending Reviews" value="8" />
-
+      {/* Stats row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <Stat title="Discord Server" value="8" color="cyan" />
+        <Stat title="FiveM Server" value="1 (City)" color="magenta" />
+        <Stat title="Team Mitglieder" value="42" color="cyan" />
+        <Stat title="Offene Tickets" value="3" color="magenta" />
       </div>
+
+      {/* FiveM Server */}
+      <div className="glow-box p-6">
+        <h2 className="neon-blue text-xl font-bold mb-4">FiveM Server Status</h2>
+
+        <p className="text-lg">WonderLife City RP — LIVE</p>
+        <p className="text-sm opacity-70">CPU: 32% | RAM: 82%</p>
+
+        <div className="mt-4 w-full bg-purple-900/30 rounded-full h-3">
+          <div className="h-3 rounded-full bg-cyan-400 w-[45%] shadow-[0_0_10px_#00eaff]"></div>
+        </div>
+
+        <p className="text-sm mt-2 opacity-70">54/128 Online Spieler</p>
+      </div>
+
+      {/* Discord Panel */}
+      <div className="glow-box p-6">
+        <h2 className="neon-blue text-xl font-bold mb-4">Discord Panel</h2>
+
+        <ul className="space-y-1">
+          <Server name="WonderLife Network" />
+          <Server name="WonderLife City" />
+          <Server name="WonderLife Studios" />
+          <Server name="WonderLife FM" />
+          <Server name="WonderLife Logs" />
+          <Server name="Development" />
+          <Server name="Entbannung" />
+        </ul>
+      </div>
+
     </div>
   );
 }
 
-/* REUSABLE WIDGET COMPONENT */
-function Widget({ title, value }: { title: string; value: string }) {
+/* COMPONENTS */
+function Stat({ title, value, color }) {
   return (
-    <div className="bg-[#13081f] border border-purple-900/30 rounded-xl p-6 shadow-lg shadow-purple-900/20">
-      <h2 className="text-xl font-semibold text-purple-300">{title}</h2>
-      <p className="text-4xl font-bold mt-2 text-purple-400">{value}</p>
+    <div className="glow-box p-6 text-center">
+      <h3 className="text-lg opacity-80">{title}</h3>
+      <p className={`text-3xl font-bold neon-${color}`}>{value}</p>
     </div>
+  );
+}
+
+function Server({ name }) {
+  return (
+    <li className="text-sm hover:text-cyan-400 transition">{name}</li>
   );
 }
