@@ -56,7 +56,7 @@ function StatCard({ title, value }) {
   );
 }
 
-function FiveMStatus() {
+function FiveMStatus({ online = 0, max = 260, cpu = 0, ram = 0, resources = 0 }) {
   return (
     <div className="bg-[#11071c] border border-purple-900/30 rounded-xl p-6 
                     shadow-lg shadow-purple-900/20">
@@ -65,15 +65,29 @@ function FiveMStatus() {
         FiveM Server Status
       </h2>
 
-      <p className="opacity-70">WonderLife City RP — <span className="text-green-400">ONLINE</span></p>
+      <p className="opacity-70">
+        WonderLife City RP —{" "}
+        <span className={online > 0 ? "text-green-400" : "text-red-400"}>
+          {online > 0 ? "ONLINE" : "OFFLINE"}
+        </span>
+      </p>
 
-      {/* PROGRESS BAR */}
+      {/* Progress Bar */}
       <div className="w-full bg-purple-900/30 h-3 rounded-full mt-4 overflow-hidden">
-        <div className="bg-purple-500 h-3 w-[42%] rounded-full" />
+        <div
+          className="bg-purple-500 h-3 rounded-full"
+          style={{ width: `${(online / max) * 100}%` }}
+        />
       </div>
 
-      <p className="text-sm opacity-70 mt-2">🔹 54 / 260 Spieler online</p>
-      <p className="text-sm opacity-50">🔸 CPU: 32% — RAM: 80% — Ressourcen: 185</p>
+      {/* DYNAMISCH */}
+      <p className="text-sm opacity-70 mt-2">
+        🔹 {online} / {max} Spieler online
+      </p>
+
+      <p className="text-sm opacity-50">
+        🔸 CPU: {cpu}% — RAM: {ram}% — Ressourcen: {resources}
+      </p>
 
     </div>
   );
