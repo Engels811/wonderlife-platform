@@ -20,3 +20,45 @@
   border-radius: 14px;
   padding: 24px;
 }
+
+.neon-blue {
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
+}
+
+.neon-magenta {
+  color: #ff35f8;
+  text-shadow: 0 0 10px #ff35f8, 0 0 25px #ff35f8;
+}
+
+.neon-card {
+  background: rgba(20, 8, 31, 0.65);
+  border: 1px solid rgba(190, 0, 255, 0.35);
+  border-radius: 16px;
+  box-shadow:
+    0 0 18px rgba(190, 0, 255, 0.35),
+    inset 0 0 12px rgba(190, 0, 255, 0.25);
+  backdrop-filter: blur(20px);
+}
+
+.neon-panel {
+  background: rgba(14, 0, 25, 0.7);
+  border: 1px solid rgba(0, 200, 255, 0.25);
+  border-radius: 16px;
+  box-shadow:
+    0 0 25px rgba(0, 200, 255, 0.35),
+    inset 0 0 15px rgba(0, 200, 255, 0.2);
+  backdrop-filter: blur(25px);
+}
+
+.glow-button {
+  background: rgba(20, 8, 31, 0.8);
+  border: 1px solid rgba(125, 0, 255, 0.45);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(125, 0, 255, 0.6);
+}
+
+.glow-button.magenta {
+  border-color: rgba(255, 0, 200, 0.45);
+  box-shadow: 0 0 15px rgba(255, 0, 200, 0.6);
+}
