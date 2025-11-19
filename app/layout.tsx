@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./glow.css"; // <- Neon Glow Effekte aktivieren
 import Sidebar from "@/components/Sidebar";
 import type { ReactNode } from "react";
 
